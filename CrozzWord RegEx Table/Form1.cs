@@ -87,30 +87,7 @@ namespace CrozzWord_RegEx_Table
                 }
             }
         }
-
-        public  void findMatch()
-        {
-
-            string chars = "H E L P";
-            string[] patterns = { "HE|LL|O+", "[PLEASE]+", "[^SPEAK]+", "EP|IP|EF" };
-            foreach (string s in patterns)
-            {
-
-                var matches = Regex.Match(chars, s, RegexOptions.IgnoreCase);
-                if (matches.Success)
-                {
-                    textBox5.Text = "For Pattern " + s + " using the input " + chars + " the following character(s) where found:";
-                   // Console.WriteLine("For Pattern " + s + " using the input " + chars + " the following character(s) where found:");
-                }
-                foreach (Match match in Regex.Matches(chars, s)
-
-                    )
-                    textBox6.Text = "Found '{0}' at position {1}.";
-              //  Console.WriteLine("'{0}',", match.Value, match.Index);
-              // textBox6.Text = match.Value;
-              //     textBox5.Text = "'{0}',", match.Value, match.Index;
-            }
-        }
+ 
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
@@ -120,6 +97,63 @@ namespace CrozzWord_RegEx_Table
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
+        }
+    }
+    public static void solveCrossWord()
+    {
+        string[] patternColumn = { "[^SPEAK]+", "EP|IP|EF" };
+        string[] patternRow = { "HE|LL|O+", "[PLEASE]+" };
+
+        foreach (string column in patternColumn)
+        {
+            foreach (string row in patternRow)
+            {
+                var matches = Regex.Match(row, column, RegexOptions.IgnoreCase);
+
+                if (matches.Success)
+                {
+                    Console.WriteLine("For Pattern " + column + " using the input " + row + " the following character(s) where found:");
+                }
+
+                foreach (Match match in Regex.Matches(row, column)
+
+                    )
+
+                    Console.WriteLine("'{0}',", match.Value, match.Index);
+            }
+
+        }
+        static void solveCrossWord()
+        {
+            string[] patternColumn = { "[^SPEAK]+", "EP|IP|EF" };
+            //   string[] patternRow = { "[^SPEAK]+", "EP|IP|EF" };
+            string[] patternRow = { "HE|LL|O+", "[PLEASE]+" };
+            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            foreach (string s in patternColumn)
+            {
+                foreach (string row in patternRow)
+                {
+                    var regex = new Regex("ABCDEFGHIJKLMNOPRSTUVWXYZ");
+
+                    
+
+                    var matches = Regex.Match(row, s, RegexOptions.IgnoreCase);
+
+                    var matchesletters = Regex.Match(matches.ToString(), alphabet, RegexOptions.IgnoreCase);
+                    if (matches.Success)
+                    {
+                        Console.WriteLine("For Pattern " + s + " using the input " + row + " the following character(s) where found:");
+                    }
+                   // var isMatch = regex.IsMatch(matches);
+
+                    foreach (Match match in Regex.Matches(row, s)
+
+                        )
+                        Console.WriteLine("'{0}',", match.Value, match.Index);
+
+                }
+            }
         }
     }
 }
