@@ -1,0 +1,18 @@
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\bin\Debug\net6.0-windows\CrozzWord RegEx Table.exe
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\bin\Debug\net6.0-windows\CrozzWord RegEx Table.deps.json
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\bin\Debug\net6.0-windows\CrozzWord RegEx Table.runtimeconfig.json
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\bin\Debug\net6.0-windows\CrozzWord RegEx Table.dll
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\bin\Debug\net6.0-windows\CrozzWord RegEx Table.pdb
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.csproj.AssemblyReference.cache
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord_RegEx_Table.Form1.resources
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.csproj.GenerateResource.cache
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.AssemblyInfoInputs.cache
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.AssemblyInfo.cs
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.csproj.CoreCompileInputs.cache
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.dll
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\refint\CrozzWord RegEx Table.dll
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.pdb
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord RegEx Table.genruntimeconfig.cache
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\ref\CrozzWord RegEx Table.dll
+C:\Users\bob-w\source\repos\CrozzWord RegEx Table\CrozzWord RegEx Table\obj\Debug\net6.0-windows\CrozzWord_RegEx_Table.Properties.Resources.resources
