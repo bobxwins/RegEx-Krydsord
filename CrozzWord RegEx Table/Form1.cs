@@ -1,5 +1,9 @@
+using System;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CrozzWord_RegEx_Table
 {
@@ -10,150 +14,141 @@ namespace CrozzWord_RegEx_Table
             InitializeComponent();
 
         }
-         
-        private void button1_Click(object sender, EventArgs e)
+        static string[] patternColumn = { @"(?<TM>\w*[^SPEAK]+\w*)","EP|IP|EF"};
+        static string[] patternRow = { @"HE|LL|O+", "[PLEASE]+" };
+        public  string[] FindHoriFirst()
         {
-
-            tbHori[0] = textBox1;
-            tbHori[1] = textBox2;
-            tbVerti[0] = textBox3;
-            tbVerti[1] = textBox4;
-            char[] hori = { 'H', 'E' };
-            char[] verti = { 'L', 'P' };
-            for (int i = 0; i < this.tbHori.Length; i++)
+            List<String> listTemp = new List<string>();
+            Regex regexSpeak = new Regex(patternColumn[0]);
+            foreach (Match matchItem in regexSpeak.Matches(patternRow[0]))
             {
-                this.tbHori[i].Text = hori[i].ToString();
+                listTemp.Add(matchItem.ToString());
             }
-
-            for (int i = 0; i < this.tbVerti.Length; i++)
-            {
-                this.tbVerti[i].Text = verti[i].ToString();
-            }
-            findMatch();
+            string[] splitString = listTemp[listTemp.Count() - 1].Split('|');
+            return splitString;
         }
 
-
-        private void button2_Click_1(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
-
-            tbHori[0] = textBox1;
-            tbHori[1] = textBox2;
-            tbVerti[0] = textBox3;
-            tbVerti[1] = textBox4;
-            for (int i = 0; i < this.tbHori.Length; i++)
-            {
-                this.tbHori[i].Text = String.Empty;
-            }
-
-            for (int i = 0; i < this.tbVerti.Length; i++)
-            {
-                this.tbVerti[i].Text = String.Empty;
-            }
+            FindHoriSecond();
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        public  void FindHoriSecond()
         {
             tbHori[0] = textBox1;
             tbHori[1] = textBox2;
-            tbVerti[0] = textBox3;
-            tbVerti[1] = textBox4;
-            string[] patternColumn = { "[^SPEAK]+", "EP|IP|EF" };
-            string[] patternRow = { "HE|LL|O+", "[PLEASE]+" };
-            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Regex regexEPIF = new Regex("[EPIPEF]"); // EP|IP|EF  aflæses ikke korrekt 
 
-            for (int i = 0; i < this.tbHori.Length; i++)
+            List<String> listTemp = new List<string>();
+            string[] hello = FindHoriFirst();
+            ; foreach (string s in hello)
             {
-                foreach (string c in patternRow)
+                foreach (Match matchItem in regexEPIF.Matches(s))
                 {
-                    //do something with letter
-                    foreach (string s in patternColumn)
+                    listTemp.Add(hello[matchItem.Index - 1]);
+                }
+            }
+           tbHori[0].Text = listTemp[0][0].ToString();
+           tbHori[1].Text = listTemp[0][1].ToString();
+            FindVertiFirst();
+            FindVertiSecond();
+        }
+        public  string[] FindVertiFirst()
+        {
+           
+            tbVerti[0] = textBox3;
+            List<String> listTemp = new List<string>();
+            List<String> listSolved = new List<string>();
+            Regex regexSpeak = new Regex("[^SPEAK]");//patternColumn[0]);
+            foreach (Match matchItem in regexSpeak.Matches(patternRow[1]))
+            {
+                listTemp.Add(matchItem.ToString());
+            }
+            foreach (string s in listTemp)
+            {
+                foreach (Match matchItem in regexSpeak.Matches(s))
+                {
+                    if (Regex.IsMatch(s, @"^[a-zA-Z]+$"))
                     {
-
-                        var matches = Regex.Match(c.ToString(), s, RegexOptions.IgnoreCase);
-                        foreach (Match match in Regex.Matches(c.ToString(), s)
-
-           )              this.tbHori[i].Text = match.Value;
-                       // Console.WriteLine("'{0}',", match.Value, match.Index);
+                         
+                        listSolved.Add(matchItem.ToString());
                     }
-
-                  //  this.tbHori[i].Text = String.Empty;
-                }
-
-
-
-                for (int ii = 0; ii < this.tbVerti.Length; ii++)
-                {
-                 //   this.tbVerti[ii].Text = String.Empty;
                 }
             }
+            tbVerti[0].Text = listSolved[0][0].ToString();
+            Console.WriteLine(listSolved[0]);
+            return listSolved.ToArray();
         }
- 
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
+        public void FindVertiSecond()
         {
-
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-    }
-    public static void solveCrossWord()
-    {
-        string[] patternColumn = { "[^SPEAK]+", "EP|IP|EF" };
-        string[] patternRow = { "HE|LL|O+", "[PLEASE]+" };
-
-        foreach (string column in patternColumn)
-        {
-            foreach (string row in patternRow)
+            tbHori[1] = textBox2;
+            tbVerti[1] = textBox4;
+            Regex regexEPIF = new Regex("[EP|IP|EF]");
+            string[] splitString = patternColumn[1].Split('|');
+            List<String> listTempChars = new List<string>();
+            List<String> listTempSplit = new List<string>();
+            foreach (char c in patternRow[1])
             {
-                var matches = Regex.Match(row, column, RegexOptions.IgnoreCase);
-
-                if (matches.Success)
+                foreach (Match matchItem in regexEPIF.Matches(c.ToString()))
                 {
-                    Console.WriteLine("For Pattern " + column + " using the input " + row + " the following character(s) where found:");
+                    listTempChars.Add(matchItem.ToString());
                 }
-
-                foreach (Match match in Regex.Matches(row, column)
-
-                    )
-
-                    Console.WriteLine("'{0}',", match.Value, match.Index);
             }
 
+
+            foreach (string s in splitString)
+            {
+                foreach (string list in listTempChars)
+                { 
+                    if (s[1].ToString() == list)
+                    {    // Checker om det sidste bogstav fra regEX er det samme som et af bogstaverne "P E E"
+                        tbVerti[1].Text = s[1].ToString();
+                    }
+                }
+
+            }
+            solve();
         }
-        static void solveCrossWord()
+
+        public void solve()
         {
-            string[] patternColumn = { "[^SPEAK]+", "EP|IP|EF" };
-            //   string[] patternRow = { "[^SPEAK]+", "EP|IP|EF" };
+
+           string solved = tbHori[0].Text + tbHori[1].Text + tbVerti[0].Text + tbVerti[1].Text;
+
             string[] patternRow = { "HE|LL|O+", "[PLEASE]+" };
-            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string[] patternColumn = {"[^SPEAK]+", "EP|IP|EF" };
 
-            foreach (string s in patternColumn)
-            {
+           
                 foreach (string row in patternRow)
                 {
-                    var regex = new Regex("ABCDEFGHIJKLMNOPRSTUVWXYZ");
 
-                    
-
-                    var matches = Regex.Match(row, s, RegexOptions.IgnoreCase);
-
-                    var matchesletters = Regex.Match(matches.ToString(), alphabet, RegexOptions.IgnoreCase);
+                    var matches = Regex.Match(solved, row, RegexOptions.IgnoreCase);
                     if (matches.Success)
                     {
-                        Console.WriteLine("For Pattern " + s + " using the input " + row + " the following character(s) where found:");
+                        Console.WriteLine("For Pattern " + row + " using the input " + solved + " the following character(s) where found:");
                     }
-                   // var isMatch = regex.IsMatch(matches);
+                    foreach (Match match in Regex.Matches(solved, row))
 
-                    foreach (Match match in Regex.Matches(row, s)
-
-                        )
-                        Console.WriteLine("'{0}',", match.Value, match.Index);
+                    {
+                        Console.WriteLine("'{0}',", match.Value.ToString(), match.Index);
+                    }
 
                 }
+            foreach (string column in patternColumn)
+            {
+
+                var matches = Regex.Match(solved, column, RegexOptions.IgnoreCase);
+                if (matches.Success)
+                {
+                    Console.WriteLine("For Pattern " + column + " using the input " + solved + " the following character(s) where found:");
+                }
+                foreach (Match match in Regex.Matches(solved, column))
+
+                {
+                    Console.WriteLine("'{0}',", match.Value.ToString(), match.Index);
+                }
+
             }
         }
-    }
-}
+        }
+        }
+    
